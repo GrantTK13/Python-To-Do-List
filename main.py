@@ -17,9 +17,13 @@ time.sleep(1)
 
 def add_task():
     task_to_add = input("Enter the name of the task you would like to add: ")
-    tasks.append(task_to_add)
-    print("\'" + task_to_add + "\' has been added.")
-    time.sleep(1)
+    if not task_to_add in tasks:
+        tasks.append(task_to_add)
+        print("\'" + task_to_add + "\' has been added.")
+        time.sleep(1)
+    else:
+        print("\'" + task_to_add + "\' is already in this to-do list!")  # Warns the user if the task already exists.
+        time.sleep(1)
 
 def remove_task():
     task_to_remove = input("Enter the name of the task you would like to remove: ")
