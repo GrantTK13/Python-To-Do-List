@@ -15,77 +15,86 @@ print("list - Lists all tasks.")
 print("quit - Exits the program.")
 time.sleep(1)
 
+def add_task():
+    task_to_add = input("Enter the name of the task you would like to add: ")
+    tasks.append(task_to_add)
+    print("\'" + task_to_add + "\' has been added.")
+    time.sleep(1)
+
+def remove_task():
+    task_to_remove = input("Enter the name of the task you would like to remove: ")
+    if task_to_remove in tasks:
+        tasks.remove(task_to_remove)  
+        print("\'" + task_to_remove + "\' has been removed.")
+        time.sleep(1)
+    else:
+        print("\'" + task_to_remove + "\' isn't a task!")  # Warns the user if the task to remove doesn't exist.
+        time.sleep(1)
+
+def change_task():
+    task_to_change = input("Enter the name of the task you would like to change: ")
+    if task_to_change in tasks:
+        task_to_change_index = tasks.index(task_to_change)
+        new_task_name = input("Enter the new task: ")
+        tasks[task_to_change_index] = new_task_name
+        print("\'" + task_to_change + "\' has been changed to \'" + new_task_name + "\'.")
+        time.sleep(1)
+    else:
+        print("\'" + task_to_change + "\' isn't a task!")  # Warns the user if the task to change doesn't exist.
+        time.sleep(1)
+
+def complete_task():
+    completed_task = input("Enter the name of the task you would like to mark as complete: ")
+    if completed_task in tasks:
+        completed_task_index = tasks.index(completed_task)
+        tasks[completed_task_index] = completed_task + " (completed)"
+        print("\'" + completed_task + "\' has been marked as completed.")
+        time.sleep(1)
+    else:
+        print("\'" + completed_task + "\' isn't a task!")  # Warns the user if the task to mark as complete doesn't exist.
+        time.sleep(1)
+
+def clear_tasks():
+    tasks.clear()
+    print("Removed all tasks.")
+    time.sleep(1)
+
+def list_tasks():
+    if not len(tasks) == 0:
+        print("The tasks in this to-do list are: " + ", ".join(tasks) + ".")
+        time.sleep(1)
+    else:
+        print("This to-do list has no tasks!")  # Warns the user if the to-do list is empty.
+        time.sleep(1)
+
+def quit():
+    print("Exiting the program...")
+    time.sleep(1)
+
+def not_command():
+    print("That isn't a command!")
+    time.sleep(1)
+
 while True:  # Repeat forever
 
     command = input("Enter a command: ")  # Opens the command prompt.
 
     if command == "add":  # Executes the code below if the command is 'add'.
-
-        task_to_add = input("Enter the name of the task you would like to add: ")
-        tasks.append(task_to_add)  
-        print("\'" + task_to_add + "\' has been added.")
-        time.sleep(1)
-
+        add_task()
     elif command == "remove":  # Executes the code below if the command is 'remove'.
-
-        task_to_remove = input("Enter the name of the task you would like to remove: ")
-        if task_to_remove in tasks:
-            tasks.remove(task_to_remove)  
-            print("\'" + task_to_remove + "\' has been removed.")
-            time.sleep(1)
-        else:
-            print("\'" + task_to_remove + "\' isn't a task!")  # Warns the user if the task to remove doesn't exist.
-            time.sleep(1)
-
+        remove_task()
     elif command == "change":  # Executes the code below if the command is 'change'.
-
-        task_to_change = input("Enter the name of the task you would like to change: ")
-        if task_to_change in tasks:
-            task_to_change_index = tasks.index(task_to_change)
-            new_task_name = input("Enter the new task: ")
-            tasks[task_to_change_index] = new_task_name
-            print("\'" + task_to_change + "\' has been changed to \'" + new_task_name + "\'.")
-            time.sleep(1)
-        else:
-            print("\'" + task_to_change + "\' isn't a task!")  # Warns the user if the task to change doesn't exist.
-            time.sleep(1)
-
+        change_task()
     elif command == "complete":  # Executes the code below if the command is 'complete'.
-
-        completed_task = input("Enter the name of the task you would like to mark as complete: ")
-        if completed_task in tasks:
-            completed_task_index = tasks.index(completed_task)
-            tasks[completed_task_index] = completed_task + " (Completed)"
-            print("\'" + completed_task + "\' has been marked as completed.")
-            time.sleep(1)
-        else:
-            print("\'" + completed_task + "\' isn't a task!")  # Warns the user if the task to mark as complete doesn't exist.
-            time.sleep(1)
-        
+        complete_task()
     elif command == "clear":  # Executes the code below if the command is 'clear'.
-
-        tasks.clear()
-        print("Removed all tasks.")
-        time.sleep(1)
-
+        clear_tasks()
     elif command == "list":  # Executes the code below if the command is 'list'.
-
-        if not len(tasks) == 0:
-            print("The tasks in this to-do list are: " + ", ".join(tasks) + ".")
-            time.sleep(1)
-        else:
-            print("This to-do list has no tasks!")  # Warns the user if the to-do list is empty.
-            time.sleep(1)
-
+        list_tasks()
     elif command == "quit":  # Executes the code below if the command is 'quit'.
-
-        print("Exiting the program...")
-        time.sleep(1)
-        break  # Breaks out of the loop, quitting the program.
-
+        quit()
+        break
     else:  # Executes the code below if the command doesn't exist.
-
-        print("That isn't a command!")
-        time.sleep(1)
+        not_command()
 
 # aight bye
